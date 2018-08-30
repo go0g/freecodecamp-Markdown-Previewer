@@ -68,7 +68,7 @@ class App extends React.Component{
             '     \n'+
             '![Ein Bild](https://via.placeholder.com/350x150)\n'  +
             '     \n'+
-            '\tprintln()println()println()println()println()println()'+            
+            '\t`println()println()println()println()println()println()`'+            
             '\n'+
             '\n'+
             
