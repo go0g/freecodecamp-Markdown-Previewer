@@ -5,9 +5,9 @@ class Header extends React.Component{
     render(){
         return(
             <header className="header">
-            <i className="fab fa-free-code-camp"></i>
+            <i className="fab fa-free-code-camp "></i>
             <span>{this.props.text}</span>
-            <i className="fas fa-expand-arrows-alt"></i>
+            <i className="fas fa-expand-arrows-alt "></i>
             </header>
         )
     }
@@ -19,9 +19,9 @@ class Editor extends React.Component{
     }
     render(){
         return(
-            <section>
+            <section id="wrapper-editor">
                 <Header text="Editor"/>
-                <textarea id="editor" cols="30" rows="10" onChange={this.props.handleChange} value={this.props.input}></textarea>                   
+                <textarea id="editor"  rows="10" onChange={this.props.handleChange} value={this.props.input}></textarea>                   
             </section>
         )
     }
@@ -41,7 +41,7 @@ class Previewer extends React.Component{
     }   
     render(){
         return(
-            <section>
+            <section id="wrapper-previewer">
                 <Header text="Previewer" />
                 <div id="preview" dangerouslySetInnerHTML={{__html:this.converter(this.props.input)}}  ></div>
             </section>            
@@ -83,7 +83,7 @@ class App extends React.Component{
     
     render(){
         return(
-            <div>               
+            <div id="container">               
                 <Editor input={this.state.input} handleChange={this.handleChange}/>
                 <Previewer input={this.state.input}/>
             </div>
