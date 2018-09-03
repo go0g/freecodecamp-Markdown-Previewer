@@ -1,17 +1,22 @@
 class Header extends React.Component{
     constructor(props){
-        super(props)
+        super(props)                       
     }
     render(){
         return(
             <header className="header">
             <i className="fab fa-free-code-camp "></i>
             <span>{this.props.text}</span>
-            <i className="fas fa-expand-arrows-alt "></i>
+            <i  className={this.props.classes === "show-max"? "fas fa-times" : "fas fa-expand-arrows-alt "} 
+                name={this.props.text} 
+                onClick={this.props.handleClick}>
+            </i>           
             </header>
         )
     }
 }
+
+class 
 
 class Editor extends React.Component{
     constructor(props){
@@ -19,8 +24,8 @@ class Editor extends React.Component{
     }
     render(){
         return(
-            <section id="wrapper-editor">
-                <Header text="Editor"/>
+            <section id="wrapper-editor" className={this.props.classes}>
+                <Header text="Editor" handleClick={this.props.handleClick} classes={this.props.classes}/>
                 <textarea id="editor"  rows="10" onChange={this.props.handleChange} value={this.props.input}></textarea>                   
             </section>
         )
@@ -41,8 +46,8 @@ class Previewer extends React.Component{
     }   
     render(){
         return(
-            <section id="wrapper-previewer">
-                <Header text="Previewer" />
+            <section id="wrapper-previewer" className={this.props.classes}>
+                <Header text="Previewer" handleClick={this.props.handleClick} classes={this.props.classes}/>
                 <div id="preview" dangerouslySetInnerHTML={{__html:this.converter(this.props.input)}}  ></div>
             </section>            
         )
@@ -73,19 +78,36 @@ class App extends React.Component{
             '\n'+
             
             '**Wichtig** \n'    +
-            '>Das ist doch eine große Scheiße'                   
+            '>Cooles Zeug' ,
+            maxView:""                  
         };
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.getViewClass = this.getViewClass.bind(this);
     }
     handleChange(event) {
-        this.setState({input: event.target.value});
-      }
+        this.setState({input: event.target.value});    
+    }
+
+    handleClick(event){
+        const eventName = event.target.getAttribute("name");
+        this.setState({
+            maxView: this.state.maxView === eventName? "":eventName
+        })
+        console.log(`${eventName}:  ${this.state.maxView}`);
+    }
+
+    getViewClass(nameComponent){
+        return this.state.maxView == "" ? 
+            "show-normal" : nameComponent == this.state.maxView? 
+            "show-max": "show-hidden"        
+    }
     
     render(){
         return(
             <div id="container">               
-                <Editor input={this.state.input} handleChange={this.handleChange}/>
-                <Previewer input={this.state.input}/>
+                <Editor classes={this.getViewClass('Editor')} input={this.state.input} handleChange={this.handleChange} handleClick={this.handleClick}/>
+                <Previewer classes={this.getViewClass('Previewer')} input={this.state.input} handleClick={this.handleClick}/>
             </div>
         )
     }

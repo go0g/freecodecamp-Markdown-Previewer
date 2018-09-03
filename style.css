@@ -26,6 +26,10 @@ section {
     background: white;
     border: 1px solid black;
 }
+section.show-hidden{
+    display: none;
+}
+
 
 .header {
     display: flex;
@@ -66,18 +70,32 @@ textarea {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    background-color: hsl(20, 1, 2);
+    background-color: hsl(154, 100%, 93%);
+    
     font-size: 1.5rem;
 
 }
 
 #wrapper-editor {
     width: 50%;
+    
+}
+#wrapper-editor.show-max{
+    width: 90vw;
+    height: 80vh;
+}
+#wrapper-editor.show-max textarea{
+    margin-top: 1rem;
+    height: 100%;
 }
 
 #wrapper-previewer {
     width: 70%;
 }
+#wrapper-previewer.show-max{
+    width: 90vw;
+}
+
 
 #preview {
     padding: 1rem;
@@ -85,9 +103,13 @@ textarea {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    background-color: hsl(154, 100%, 93%);
 }
 
 #preview img {
     max-width: 100%;
     height: auto;
+}
+.fas:hover{
+    color: hsl(128, 90%, 51%)
 }
